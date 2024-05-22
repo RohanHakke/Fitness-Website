@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
+:root {
+  --clr-primary: #5b73ca;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(135deg, #3a3b6091 10%, #071a50 100%);
+  position: relative;
+}
+
+::selection {
+  color: #f2f2f2;
+  background: #f86d8d;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+body::before {
+  clip-path: circle(30% at left 20%);
+  opacity: 0.4;
+  background-image: linear-gradient(135deg, #c1ebc7 10%, #dae2db 100%);
+}
+
+body::after {
+  opacity: 0.4;
+  clip-path: circle(25% at right 80%);
+  background-image: linear-gradient(135deg, #f6416c 10%, #ff9a9e 100%);
+}
+
+main {
+  height: 95vh;
+  width: 96%;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px);
+  z-index: 1;
+  border-radius: 25px;
+  margin: auto;
+  position: relative;
+}
+
+.navbar {
+  width: 100%;
+  height: 10vh;
+  padding: 35px 50px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo img {
+  width: 100px;
+  height: 101px;
+}
+
+.navbar .menu {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navbar .menu li {
+  list-style: none;
+  margin: 0 15px;
+}
+
+.navbar .menu a {
+  color: #000;
+  text-decoration: none;
+  font-size: 1.2rem; /* Adjusted to a more reasonable size */
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+.navbar .menu a:hover {
+  color: #f2f2f2;
+}
+
+.navbar .buttons a input {
+  outline: none;
+  color: #f2f2f2;
+  font-size: 1rem; /* Adjusted to a more reasonable size */
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 6px 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-image: linear-gradient(135deg, #852f5edb 10%, #071431 100%);
+}
+
+.navbar .buttons a input:hover {
+  transform: scale(0.97);
+}
+
+.text-content {
+  width: 40%;
+  margin: 100px 0 0 50px;
+}
+
+.text-content h2 {
+  font-size: 3rem; /* Adjusted to a more reasonable size */
+  font-weight: 800;
+}
+
+.text-content p {
+  font-size: 1rem; /* Adjusted to a more reasonable size */
+  margin-top: 10px;
+}
+
+.mt {
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 28px;
+  background-image: linear-gradient(
+    135deg,
+    #852f5edb 10%,
+    var(--clr-primary) 100%
+  );
+  border-radius: 40px;
+  font-size: 1rem; /* Adjusted to a more reasonable size */
+  font-weight: 400;
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+}
