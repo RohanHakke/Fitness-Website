@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
@@ -18,13 +17,15 @@
         <li><a href="/workout/work.html">Workout</a></li>
         <li><a href="/card/index.html">About Us</a></li>
       </ul>
-      <div class="buttons">
-        <a href="Login Page/indexlogin.html"
+      <div class="buttons" id="auth-buttons">
+        <a href="Login Page/indexlogin.html" id="login-button"
           ><input type="button" value="Login"
         /></a>
-        <a href="/sign/indexsing.html"
+        <a href="/sign/indexsing.html" id="register-button"
           ><input type="button" value="Register"
         /></a>
+        <span id="user-name" style="display: none; color: white"></span>
+        <button id="logout-button" style="display: none">Logout</button>
       </div>
     </nav>
     <main>
@@ -38,5 +39,53 @@
         <a href="/workout/work.html" class="btn mt">Get Started Now</a>
       </div>
     </main>
+    <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDHqd78iC7-6IFsr6CRLcWQmKb2NClcfq8",
+        authDomain: "fitness-75e1b.firebaseapp.com",
+        projectId: "fitness-75e1b",
+        storageBucket: "fitness-75e1b.appspot.com",
+        messagingSenderId: "513543569806",
+        appId: "1:513543569806:web:29a6eb186a43bc9de624df",
+        measurementId: "G-YQ0WV9HZVT",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          document.getElementById("register-button").style.display = "none";
+          document.getElementById("login-button").style.display = "none";
+          document.getElementById("logout-button").style.display = "inline";
+          const userName = user.displayName || user.email;
+          const userNameElement = document.getElementById("user-name");
+          userNameElement.textContent = `Welcome, ${userName}`;
+          userNameElement.style.display = "inline";
+        } else {
+          document.getElementById("register-button").style.display = "inline";
+          document.getElementById("login-button").style.display = "inline";
+          document.getElementById("logout-button").style.display = "none";
+          document.getElementById("user-name").style.display = "none";
+        }
+      });
+      document.getElementById("logout-button").addEventListener("click", () => {
+        signOut(auth)
+          .then(() => {
+            console.log("User signed out successfully");
+          })
+          .catch((error) => {
+            console.error("Error signing out:", error);
+          });
+      });
+    </script>
   </body>
 </html>

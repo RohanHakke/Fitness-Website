@@ -1,34 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<title>Animated Login Page</title>
-</head>
-<body>
-	<div class="square">
-		<i style="--clr:rgb(183, 199, 36);"></i>
-		<i style="--clr:rgb(48, 160, 20);"></i>
-		<i style="--clr:#44e9ff;"></i>
-		<i style="--clr:#c300ff;"></i>
-		<i style="--clr:#c4dee2;"></i>
-		<div class="login">
-			<h2>Login</h2>
-			<div class="inputBx">
-				<input type="text" placeholder="Username">
-			</div>
-			<div class="inputBx">
-				<input type="password" placeholder="Password">
-			</div>
-			<div class="inputBx">
-				<input type="submit" value="Login">
-			</div>
-			<div class="links">
-				<button><a href="http://127.0.0.1:5500/sign/indexsing.html">Signup</a></button>
-			</div>
-		</div>
-	</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Login Page/style.css" />
+    <title>Animated Login Page</title>
+  </head>
+  <body>
+    <div class="square">
+      <div class="login">
+        <h2>Login</h2>
+        <form id="login-form">
+          <div class="inputBx">
+            <input type="email" id="login-email" placeholder="Email" required />
+          </div>
+          <div class="inputBx">
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div class="inputBx">
+            <input type="submit" value="Login" />
+          </div>
+        </form>
+        <div class="links">
+			<p>Create an Account </p>
+          <button><a href="../sign/indexsing.html">Signup</a></button>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDHqd78iC7-6IFsr6CRLcWQmKb2NClcfq8",
+        authDomain: "fitness-75e1b.firebaseapp.com",
+        projectId: "fitness-75e1b",
+        storageBucket: "fitness-75e1b.appspot.com",
+        messagingSenderId: "513543569806",
+        appId: "1:513543569806:web:29a6eb186a43bc9de624df",
+        measurementId: "G-YQ0WV9HZVT",
+      };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      document.getElementById("login-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            window.location.href = "/";
+          })
+          .catch((error) => {
+            console.error("Error logging in:", error);
+            alert("Error logging in: " + error.message);
+          });
+      });
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log("User is signed in:");
+        } else {
+          console.log("No user is signed in.");
+        }
+      });
+    </script>
+  </body>
 </html>

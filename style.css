@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 
 :root {
@@ -46,7 +46,14 @@ body::after {
   clip-path: circle(25% at right 80%);
   background-image: linear-gradient(135deg, #f6416c 10%, #ff9a9e 100%);
 }
-
+#logout-button{
+  background-image: linear-gradient(135deg, #852f5edb 10%, #071431 100%);
+  color: #f2f2f2;
+  padding: .5rem;
+  border: none;
+  border-radius: .5rem;
+  cursor: pointer;
+}
 main {
   height: 95vh;
   width: 96%;
@@ -89,7 +96,7 @@ main {
 .navbar .menu a {
   color: #000;
   text-decoration: none;
-  font-size: 1.2rem; /* Adjusted to a more reasonable size */
+  font-size: 1.2rem;
   font-weight: 400;
   transition: all 0.3s ease;
 }
@@ -101,7 +108,7 @@ main {
 .navbar .buttons a input {
   outline: none;
   color: #f2f2f2;
-  font-size: 1rem; /* Adjusted to a more reasonable size */
+  font-size: 1rem; 
   font-weight: 500;
   border-radius: 12px;
   padding: 6px 15px;
