@@ -1,25 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Account</title>
-
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <form>
+    <form id="signup-form">
       <h3>Create Account</h3>
 
-      <label for="Name">Name</label>
-      <input type="text" placeholder="Enter Name" id="name" />
+      <label for="name">Name</label>
+      <input type="text" placeholder="Enter Name" id="name" required />
 
-      <label for="username">Email</label>
-      <input type="text" placeholder="Enter email" id="email" />
+      <label for="email">Email</label>
+      <input type="email" placeholder="Enter email" id="email" required />
 
       <label for="password">Password</label>
-      <input type="password" placeholder="Password" id="password" />
+      <input type="password" placeholder="Password" id="password" required />
 
-      <button>Sign up</button>
+      <button type="submit">Sign up</button>
     </form>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyDHqd78iC7-6IFsr6CRLcWQmKb2NClcfq8",
+        authDomain: "fitness-75e1b.firebaseapp.com",
+        projectId: "fitness-75e1b",
+        storageBucket: "fitness-75e1b.appspot.com",
+        messagingSenderId: "513543569806",
+        appId: "1:513543569806:web:29a6eb186a43bc9de624df",
+        measurementId: "G-YQ0WV9HZVT",
+      };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      document.getElementById("signup-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            alert("Account created successfully!");
+            window.location.href = "/";
+          })
+          .catch((error) => {
+            console.error("Error registering:", error);
+            alert("Error creating account: " + error.message);
+          });
+      });
+    </script>
   </body>
 </html>
