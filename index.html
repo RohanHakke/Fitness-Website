@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div id="loading-screen">Loading...</div>
     <nav class="navbar">
       <div class="logo">
         <img src="asset/download-removebg-preview.png" alt="" />
@@ -47,7 +46,6 @@
     </main>
     <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
     <script type="module">
-      document.getElementById("loading-screen").style.display = "block";
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
       import {
         getAuth,
@@ -70,7 +68,6 @@
 
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          document.getElementById("loading-screen").style.display = "none";
           document.getElementById("register-button").style.display = "none";
           document.getElementById("login-button").style.display = "none";
           document.getElementById("logout-button").style.display = "inline";
