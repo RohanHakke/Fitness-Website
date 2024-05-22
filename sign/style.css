@@ -8,7 +8,16 @@
 body {
   background-color: #7469a1;
 }
+.loginDiv{
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+  justify-content: space-evenly;
+}
+.loginDiv a{
+  text-decoration: none;
 
+}
 form {
   margin-top: 10rem;
   height: 660px;
